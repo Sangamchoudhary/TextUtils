@@ -16,10 +16,7 @@ export default function TextForm(props) {
     props.showAlert("Text has been cleared", "danger");
   };
   const handleCopyClick = () => {
-    var copyText = document.getElementById("my-box");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(copyText.value);
+    navigator.clipboard.writeText(text);
     document.getSelection().removeAllRanges();
     props.showAlert("Text has been copied", "info");
   };
@@ -96,7 +93,7 @@ export default function TextForm(props) {
         <h2>Text Summary</h2>
         <p>
           {
-            text.split(" ").filter((element) => {
+            text.split(/\s+/).filter((element) => {
               return element.length !== 0;
             }).length
           }{" "}
