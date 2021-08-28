@@ -23,19 +23,45 @@ export default function Navbar(props) {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>
-            {/* <li className="nav-item">
-              <a className="nav-link" href="/about">
-                About
-              </a>
-            </li> */}
           </ul>
+          <div className="d-flex">
+            <div
+              className="bg-primary rounded mx-1 my-1"
+              onClick={() => {
+                props.toggleMode("primary");
+              }}
+              style={{ height: "30px", width: "30px", cursor: "pointer" }}
+            ></div>
+          </div>
+          <div className="d-flex">
+            <div
+              className="bg-danger rounded mx-1 my-1"
+              onClick={() => {
+                props.toggleMode("danger");
+              }}
+              style={{ height: "30px", width: "30px", cursor: "pointer" }}
+            ></div>
+          </div>
+          <div className="d-flex">
+            <div
+              className="bg-warning rounded mx-1 my-1"
+              onClick={() => {
+                props.toggleMode("warning");
+              }}
+              style={{ height: "30px", width: "30px", cursor: "pointer" }}
+            ></div>
+          </div>
+          <div className="d-flex">
+            <div
+              className="bg-success rounded mx-1 my-2"
+              onClick={() => {
+                props.toggleMode("success");
+              }}
+              style={{ height: "30px", width: "30px", cursor: "pointer" }}
+            ></div>
+          </div>
           <div
-            className={`form-check form-switch text-${
+            className={`form-check my-2 mx-2 form-switch text-${
               props.mode === "light" ? "dark" : "light"
             }`}
           >
@@ -43,7 +69,9 @@ export default function Navbar(props) {
               className="form-check-input"
               type="checkbox"
               id="flexSwitchCheckDefault"
-              onClick={props.toggleMode}
+              onClick={() => {
+                props.toggleDarkMode();
+              }}
             />
             Dark Mode
           </div>

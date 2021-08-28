@@ -19,12 +19,28 @@ function App() {
       setAlert(null);
     }, 2000);
   };
-  const toggleMode = () => {
+  const removeBodyClasses = () => {
+    document.body.classList.remove("bg-light");
+    document.body.classList.remove("bg-dark");
+    document.body.classList.remove("bg-warning");
+    document.body.classList.remove("bg-danger");
+    document.body.classList.remove("bg-primary");
+    document.body.classList.remove("bg-success");
+  };
+  const toggleMode = (cls) => {
+    removeBodyClasses();
+    document.body.classList.add("bg-" + cls);
+    setMode("dark");
+    showAlert(`${cls} theme applied`, "success");
+  };
+  const toggleDarkMode = () => {
     if (mode === "light") {
+      removeBodyClasses();
       setMode("dark");
       document.body.style.backgroundColor = "#1f1f1f";
       showAlert("Dark mode has been enbled", "success");
     } else {
+      removeBodyClasses();
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("Light mode has been enbled", "success");
@@ -32,24 +48,15 @@ function App() {
   };
   return (
     <>
-      {/* <Router> */}
-      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
+      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} toggleDarkMode={toggleDarkMode} />
       <Alert alert={alert} />
       <div className="container my-3">
-        {/* <Switch> */}
-        {/* <Route exact path="/about"> */}
-        {/* <About /> */}
-        {/* </Route> */}
-        {/* <Route exact path="/"> */}
         <TextForm
           heading="Enter text to analyze"
           mode={mode}
           showAlert={showAlert}
         />
-        {/* </Route> */}
-        {/* </Switch> */}
       </div>
-      {/* </Router> */}
     </>
   );
 }
